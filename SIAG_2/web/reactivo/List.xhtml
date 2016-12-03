@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReactivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReactivoEmpty}" rendered="#{reactivoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{reactivoController.items.rowCount > 0}">
+                    <h:outputText value="#{reactivoController.pagination.pageFirstItem + 1}..#{reactivoController.pagination.pageLastItem + 1}/#{reactivoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{reactivoController.previous}" value="#{bundle.Previous} #{reactivoController.pagination.pageSize}" rendered="#{reactivoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{reactivoController.next}" value="#{bundle.Next} #{reactivoController.pagination.pageSize}" rendered="#{reactivoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{reactivoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReactivoTitle_idreactivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idreactivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReactivoTitle_codiceberg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codiceberg}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReactivoTitle_reactivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reactivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReactivoTitle_cantidadinv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadinv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{reactivoController.prepareView}" value="#{bundle.ListReactivoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reactivoController.prepareEdit}" value="#{bundle.ListReactivoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reactivoController.destroy}" value="#{bundle.ListReactivoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{reactivoController.prepareCreate}" value="#{bundle.ListReactivoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReactivoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

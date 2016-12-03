@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReactivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReactivoLabel_idreactivo}" for="idreactivo" />
+                    <h:inputText id="idreactivo" value="#{reactivoController.selected.idreactivo}" title="#{bundle.CreateReactivoTitle_idreactivo}" required="true" requiredMessage="#{bundle.CreateReactivoRequiredMessage_idreactivo}"/>
+                    <h:outputLabel value="#{bundle.CreateReactivoLabel_codiceberg}" for="codiceberg" />
+                    <h:inputText id="codiceberg" value="#{reactivoController.selected.codiceberg}" title="#{bundle.CreateReactivoTitle_codiceberg}" required="true" requiredMessage="#{bundle.CreateReactivoRequiredMessage_codiceberg}"/>
+                    <h:outputLabel value="#{bundle.CreateReactivoLabel_reactivo}" for="reactivo" />
+                    <h:inputText id="reactivo" value="#{reactivoController.selected.reactivo}" title="#{bundle.CreateReactivoTitle_reactivo}" />
+                    <h:outputLabel value="#{bundle.CreateReactivoLabel_cantidadinv}" for="cantidadinv" />
+                    <h:inputText id="cantidadinv" value="#{reactivoController.selected.cantidadinv}" title="#{bundle.CreateReactivoTitle_cantidadinv}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reactivoController.create}" value="#{bundle.CreateReactivoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{reactivoController.prepareList}" value="#{bundle.CreateReactivoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReactivoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

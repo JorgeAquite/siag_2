@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditReactivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditReactivoLabel_idreactivo}" for="idreactivo" />
+                    <h:inputText id="idreactivo" value="#{reactivoController.selected.idreactivo}" title="#{bundle.EditReactivoTitle_idreactivo}" required="true" requiredMessage="#{bundle.EditReactivoRequiredMessage_idreactivo}"/>
+                    <h:outputLabel value="#{bundle.EditReactivoLabel_codiceberg}" for="codiceberg" />
+                    <h:inputText id="codiceberg" value="#{reactivoController.selected.codiceberg}" title="#{bundle.EditReactivoTitle_codiceberg}" required="true" requiredMessage="#{bundle.EditReactivoRequiredMessage_codiceberg}"/>
+                    <h:outputLabel value="#{bundle.EditReactivoLabel_reactivo}" for="reactivo" />
+                    <h:inputText id="reactivo" value="#{reactivoController.selected.reactivo}" title="#{bundle.EditReactivoTitle_reactivo}" />
+                    <h:outputLabel value="#{bundle.EditReactivoLabel_cantidadinv}" for="cantidadinv" />
+                    <h:inputText id="cantidadinv" value="#{reactivoController.selected.cantidadinv}" title="#{bundle.EditReactivoTitle_cantidadinv}" />
+                </h:panelGrid>
+                <h:commandLink action="#{reactivoController.update}" value="#{bundle.EditReactivoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditReactivoViewLink}"/>
+                <br />
+                <h:commandLink action="#{reactivoController.prepareList}" value="#{bundle.EditReactivoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditReactivoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

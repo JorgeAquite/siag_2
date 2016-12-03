@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Programacion de Laboratorio - SIAG</title>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    </h:head>
+    <h:body styleClass="cyan lighten-5" >
+        <div id="menu" class="container">
+
+            <!--Menu lateral!!-->
+            <ul id="slide-out" class="side-nav fixed" style="width: 280px">
+                <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 200px"/></li>
+                <div class="input-field col s1">
+                    <select>
+                        <option value="0" disabled='true'>Seleccione su rol</option>
+                        <option value="1">Asistente</option>
+                        <option value="2">Director</option>
+                        <option value="3">SysAdmin</option>
+                    </select>
+                    <label>Elija Su Rol</label>
+                </div>
+                <br/>
+                <li><a class="subheader" style="font-size: large">Laboratorios</a></li>
+                <li><a href="#!">Programar Laboratorio</a></li>
+                <li><a href="#!">Cronograma de Laboratorio</a></li>
+                <li><a href="#!">Solicitud de Laboratorio</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader" style="font-size: large">Reportes</a></li>
+                <li><a href="#!">Generar estadisticas de Lab</a></li>
+                <li><a href="#!">Generar estadisticas de Insumos</a></li>
+                <li><a href="#!">Generar informe de deudores</a></li>
+                <li><a href="generarReportes.xhtml">Generar archivo plano</a></li>
+            </ul> 
+        </div> 
+        <!--Fin de menu lateral-->  
+
+        <!--        Inicio Agenda-->
+        <div class="container">
+            <div class="center-align">
+                <div class="row">
+                    <div class="col s9 offset-s1">
+                        <div class="card" style="width: 750px">
+                            <div class="card-content">
+                                <a>PRUEBA</a>
+                                <p:schedule value="#{scheduleView.eventModel}" id="Agenda" view="agendaWeek" allDaySlot="false" widgetVar="myschedule" timeZone="GMT+2" >                                  
+
+                                </p:schedule>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!--          FIN AGENDA-->
+
+    </h:body>
+    <script>
+
+        //Muestra el menu select de Roles 
+        // Show sideNav
+        $('.button-collapse').sideNav('show');
+        // Hide sideNav
+        $('.button-collapse').sideNav('hide');
+
+
+        //Muestra lista menu select de roles
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+    </script>
+    <style type="text/css">
+        .value {
+            width: 1000px;
+        }
+    </style>
+
+</html>
+

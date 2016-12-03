@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReservaInsumoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReservaInsumoEmpty}" rendered="#{reservaInsumoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{reservaInsumoController.items.rowCount > 0}">
+                    <h:outputText value="#{reservaInsumoController.pagination.pageFirstItem + 1}..#{reservaInsumoController.pagination.pageLastItem + 1}/#{reservaInsumoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{reservaInsumoController.previous}" value="#{bundle.Previous} #{reservaInsumoController.pagination.pageSize}" rendered="#{reservaInsumoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{reservaInsumoController.next}" value="#{bundle.Next} #{reservaInsumoController.pagination.pageSize}" rendered="#{reservaInsumoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{reservaInsumoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReservaInsumoTitle_idresinsumo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idresinsumo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReservaInsumoTitle_idreslaboratorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idreslaboratorio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReservaInsumoTitle_idusuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{reservaInsumoController.prepareView}" value="#{bundle.ListReservaInsumoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reservaInsumoController.prepareEdit}" value="#{bundle.ListReservaInsumoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{reservaInsumoController.destroy}" value="#{bundle.ListReservaInsumoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{reservaInsumoController.prepareCreate}" value="#{bundle.ListReservaInsumoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReservaInsumoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

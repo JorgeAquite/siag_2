@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReactivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReactivoLabel_idreactivo}"/>
+                    <h:outputText value="#{reactivoController.selected.idreactivo}" title="#{bundle.ViewReactivoTitle_idreactivo}"/>
+                    <h:outputText value="#{bundle.ViewReactivoLabel_codiceberg}"/>
+                    <h:outputText value="#{reactivoController.selected.codiceberg}" title="#{bundle.ViewReactivoTitle_codiceberg}"/>
+                    <h:outputText value="#{bundle.ViewReactivoLabel_reactivo}"/>
+                    <h:outputText value="#{reactivoController.selected.reactivo}" title="#{bundle.ViewReactivoTitle_reactivo}"/>
+                    <h:outputText value="#{bundle.ViewReactivoLabel_cantidadinv}"/>
+                    <h:outputText value="#{reactivoController.selected.cantidadinv}" title="#{bundle.ViewReactivoTitle_cantidadinv}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reactivoController.destroyAndView}" value="#{bundle.ViewReactivoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewReactivoEditLink}"/>
+                <br />
+                <h:commandLink action="#{reactivoController.prepareCreate}" value="#{bundle.ViewReactivoCreateLink}" />
+                <br />
+                <h:commandLink action="#{reactivoController.prepareList}" value="#{bundle.ViewReactivoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewReactivoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateReservaLabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateReservaLabLabel_idreslaboratorio}" for="idreslaboratorio" />
+                    <h:inputText id="idreslaboratorio" value="#{reservaLabController.selected.idreslaboratorio}" title="#{bundle.CreateReservaLabTitle_idreslaboratorio}" required="true" requiredMessage="#{bundle.CreateReservaLabRequiredMessage_idreslaboratorio}"/>
+                    <h:outputLabel value="#{bundle.CreateReservaLabLabel_fechareserva}" for="fechareserva" />
+                    <h:inputText id="fechareserva" value="#{reservaLabController.selected.fechareserva}" title="#{bundle.CreateReservaLabTitle_fechareserva}" required="true" requiredMessage="#{bundle.CreateReservaLabRequiredMessage_fechareserva}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateReservaLabLabel_idlaboratorio}" for="idlaboratorio" />
+                    <h:selectOneMenu id="idlaboratorio" value="#{reservaLabController.selected.idlaboratorio}" title="#{bundle.CreateReservaLabTitle_idlaboratorio}" >
+                        <f:selectItems value="#{laboratorioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateReservaLabLabel_idpractica}" for="idpractica" />
+                    <h:selectOneMenu id="idpractica" value="#{reservaLabController.selected.idpractica}" title="#{bundle.CreateReservaLabTitle_idpractica}" >
+                        <f:selectItems value="#{practicaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reservaLabController.create}" value="#{bundle.CreateReservaLabSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{reservaLabController.prepareList}" value="#{bundle.CreateReservaLabShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateReservaLabIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
