@@ -2,24 +2,117 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Generar Reportes</title>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     </h:head>
-    <h:body>
-        Hello from Facelets
-        <br/>
-        <a>Isaac Say</a>
-        <p:inputText/>
-<!--        <h:form>
-    <p:growl id="growl" life="2000" />
-     
-    <p:commandButton value="Boton de Isaac" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+    <h:body styleClass="cyan lighten-5">
+        <div id="menu" class="container">
 
-    <p:commandButton actionListener="#{buttonView.buttonAction}" id="iconOnly" update="growl" icon="ui-icon-disk" title="Icon Only" />
- 
-    <p:commandButton value="Disabled" id="disabled" disabled="true" />
-</h:form>-->
+
+            <!--Menu lateral!!-->
+            <ul id="slide-out" class="side-nav fixed">
+                <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 250px"/></li>
+
+                <!--prueba button deplegable!!-->
+                <div class="input-field col s1">
+                    <select>
+                        <option value="0" disabled='true'>Seleccione su rol</option>
+                        <option value="1"> Asistente</option>
+                        <option value="2">Director</option>
+
+                    </select>
+                    <label>ELEGIR ROL</label>
+                </div>
+                <br/>
+
+                <li><a class="subheader" style="font-size: x-large">Laboratorios</a></li>
+                <li><a href="#!">Cronograma de Laboratorio</a></li>
+                <li><a class="subheader" style="font-size: x-large">Consultar Solicitudes</a></li>
+                <li><a href="#!">Solicitudes de Insumos</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader" style="font-size: x-large">Deudas</a></li>
+                <li><a href="registrarDeudor.xhtml">Registrar Deudor</a></li>
+                <li><a href="#!">Cancelar Deudor</a></li>
+            </ul> 
+        </div> 
+        <!--  Inicio Agenda -->
+        <div class="container">
+            <div class="center-align">
+                <div class="row">
+                    <div class="col s9 offset-s1">
+                        <div class="card">
+                            <div class="card-content">
+                                <big><a> Generar Reportes </a></big>
+                                <br />
+                                <br />
+                                <p><legend>Seleccionar el documento que desea descargar</legend></p>
+                                <br />
+                                <!--prueba-->
+
+                                <p:panel id="panel" header=" Descargar" style="margin-bottom:2px;">
+                                    <p:messages id="messages" />
+                                    <h:form> 
+
+                                        <p:growl id="growl" life="4000" />
+                                        <p:commandButton value="Genrar Archivo plano" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />  
+                                       <br />
+                                       <br />
+                                        <p:growl id="growl2" life="2000" /> 
+                                        <p:commandButton value="Generar Informe de Deudores" id="ajax2" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                                        <br />
+                                       <br />
+                                        <p:growl id="growl3" life="2000" /> 
+                                        <p:commandButton value="Generar Estadisticas de Insumo" id="ajax3" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                                        <br />
+                                       <br />
+                                        <p:growl id="growl4" life="2000" /> 
+                                        <p:commandButton value="Generar Estadisticas de Laboratorio" id="ajax4" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                                    </h:form>
+
+
+                                </p:panel>
+
+
+                                <!-- prueba-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!--  Fin Agenda -->
+
+
     </h:body>
-</html>
+ <script>
 
+        //Muestra el menu select de Roles 
+        // Show sideNav
+        $('.button-collapse').sideNav('show');
+        // Hide sideNav
+        $('.button-collapse').sideNav('hide');
+
+
+        //Muestra lista menu select de roles
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+    </script>
+    <style type="text/css">
+        .value {
+            width: 1000px;
+        }
+    </style>
+</html>

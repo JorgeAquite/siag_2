@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registro del deudor</title>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    </h:head>
+    <h:body styleClass="cyan lighten-5">
+        <div id="menu" class="container">
+
+
+<!--Menu lateral!!-->
+<ul id="slide-out" class="side-nav fixed">
+    <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 250px"/></li>
+
+    <!--prueba button deplegable!!-->
+    <div class="input-field col s1">
+                    <select>
+                        <option value="0" disabled='true'>Seleccione su rol</option>
+                        <option value="1">Auxiliar</option>
+                        <option value="2">Coordinador</option>
+                        
+                    </select>
+                    <label>ElEGIR ROL</label>
+                </div>
+   
+
+
+    <li><a class="subheader" style="font-size: x-large">Laboratorios</a></li>
+    <li><a href="#!">Cronograma de Laboratorio</a></li>
+    <li><a class="subheader" style="font-size: x-large">Consultar Solicitudes</a></li>
+    <li><a href="#!">Solicitudes de Insumos</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader" style="font-size: x-large">Deudas</a></li>
+    <li><a href="registrarDeudor.xhtml">Registrar Deudor</a></li>
+    <li><a href="cancelarDeuda.xhtml">Cancelar Deudor</a></li>
+</ul> 
+        </div> 
+        <!--  Inicio Agenda -->
+        <div class="container">
+            <div class="center-aling">
+                <div class="row">
+                    <div class="col s9 offset-s1">
+                        <div class="card">
+                            <div class="card-content">
+                                <big><a><legend> Formatos de Deudas </legend></a></big>
+                                <br />
+
+
+
+                                
+                                <div align="center"> <p:panel id="panel" header="General" style="margin-bottom:1px;"> 
+                                     <p:messages id="messages" />
+                              
+                                     <h:form>
+                                         <div align="justify">
+                                             <div class="input-field col s4"><h:inputText id="buscarUsario" required="true" requiredMessage="Se necesita el nombre de usuario para continuar" value="#{pruebaMB.usuario}"/>
+                                                 <h:outputLabel for="buscarUsuario" value="BUSCAR"/>
+                                             </div>
+                                             <!--                                        <i> Yo : </i>-->
+
+                                             <br />
+                                             <br />
+                                             <br />
+                                             <br />
+                                             <p>Tipo De Insumos</p>
+                                             <br />
+                                             <input type="checkbox" id="test2" />
+                                             <label for="test2"> Material </label>
+                                             <br />
+                                             <input type="checkbox" id="test3" />
+                                             <label for="test3"> Reactivos </label>
+                                             <br />
+                                             <br />
+                                             <div algin ="left">
+                                             <i> Insumos:</i></div>
+                                             <div class="input-field col s8">
+                                                 <h:panelGrid columns="5" cellpadding="5">
+                                                     <h:outputLabel for="name" value="" style="font-weight:bold" />
+                                                     <p:inputText id="name" value="#{basicView.text}" />&nbsp;&nbsp;
+                                                     <p class="range-field"> 
+                                                         <input type="range" id="test5" min="0" max="15" /> 
+                                                     </p> 
+                                                     <p:commandButton value="AGREGAR" update="display" icon="ui-icon-check" />
+                                                     <h:outputText id="display" value="" />
+                                                 </h:panelGrid>
+                                             </div>
+                                             <br />
+                                             <br />
+                                             <br />
+                                             <br />
+                                             <br />
+                                             <h3 style="margin-top: 0">Descripcion</h3>
+                                             <p>Observaciones de la deuda.</p>
+                                           
+                                         </div>
+                                         <p:inputTextarea rows="10" cols="50" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" />
+                                         <div align="center">
+                                             <a class="waves-effect waves-light btn">Aceptar</a>
+                                             <a class="waves-effect waves-light btn">Cancelar</a>
+                                         </div>
+                                         <br />
+                                         <br />
+
+
+
+
+                                     </h:form>
+
+                                </p:panel></div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+  <!--  Fin Agenda -->
+          
+    </h:body>
+     <script>
+
+        //Muestra el menu select de Roles 
+        // Show sideNav
+        $('.button-collapse').sideNav('show');
+        // Hide sideNav
+        $('.button-collapse').sideNav('hide');
+
+
+        //Muestra lista menu select de roles
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+    </script>
+    <style type="text/css">
+        .value {
+            width: 1000px;
+        }
+    </style>
+      
+    
+</html>
+

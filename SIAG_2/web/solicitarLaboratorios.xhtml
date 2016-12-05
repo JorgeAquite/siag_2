@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Solicitud de Insumos</title>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    </h:head>
+    <h:body styleClass="cyan lighten-5">
+        <div id="menu" class="container">
+
+
+            <!--Menu lateral!!-->
+            <ul id="slide-out" class="side-nav fixed">
+                <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 250px"/></li>
+
+                <!--prueba button deplegable!!-->
+                <div class="input-field col s1">
+                    <select>
+                        <option value="0" disabled='true'>Seleccione su rol</option>
+                        <option value="1">Docente</option>
+                      
+
+                    </select>
+                    <label>ElEGIR ROL</label>
+                </div>
+
+
+
+                <li><a class="subheader" style="font-size: x-large">Laboratorios</a></li>
+                <li><a href="solicitarLaboratorios.xhtml">Solicitud de Laboratorios</a></li>
+                <li><a class="subheader" style="font-size: x-large">Reserva de Insumos</a></li>
+                <li><a href="solicitarInsumos.xhtml">Solicitud de Material</a></li>
+               
+            </ul> 
+        </div> 
+        <!--  Inicio Agenda -->
+        <div class="container">
+            <div class="center-aling">
+                <div class="row">
+                    <div class="col s9 offset-s1">
+                        <div class="card">
+                            <div class="card-content">
+                                <big><a><legend> Solicitar Laboratorios </legend></a></big>
+                                <br />
+
+
+
+
+                                <div align="center"> <p:panel id="panel" header="Solicitud de Laboratorio" style="margin-bottom:10px;"> 
+                                        <p:messages id="messages" />
+
+                                        <h:form>
+                                            <!--Buscar Laboratorio-->
+                                            <select>
+                                                <option value="0" disabled='true'>Seleccione el laboratorio </option>
+                                                <option value="1"> Biologia #4106</option>
+                                                <option value="2"> libre</option>
+                                                <option value="3"> Ceramica</option>
+
+
+                                            </select>
+                                            <label>ElEGIR LABORATORIO</label>
+                                            <!--Conograma-->
+
+                                            <p:growl id="messages" showDetail="true" />
+
+                                            <h:panelGrid columnClasses="value">
+                                                <h3 style="margin-top: 0">Cronograma</h3>
+                                                <p:schedule id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
+
+                                                    <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                                                    <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                                                    <p:ajax event="eventMove" listener="#{scheduleView.onEventMove}" update="messages" />
+                                                    <p:ajax event="eventResize" listener="#{scheduleView.onEventResize}" update="messages" />
+
+                                                </p:schedule>
+
+
+                                            </h:panelGrid>
+
+                                            <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                                                <h:panelGrid id="eventDetails" columns="2">
+                                                    <p:outputLabel for="title" value="Titles:" />
+                                                    <p:inputText id="title" value="#{scheduleView.event.title}" required="true" />
+
+                                                    <p:outputLabel for="from" value="From:" />
+                                                    <p:calendar id="from" value="#{scheduleView.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                                                    <p:outputLabel for="to" value="To:" />
+                                                    <p:calendar id="to" value="#{scheduleView.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                                                    <p:outputLabel for="allDay" value="All Day:" />
+                                                    <h:selectBooleanCheckbox id="allDay" value="#{scheduleView.event.allDay}" />
+
+                                                    <p:commandButton type="reset" value="Reset" />
+                                                    <p:commandButton id="addButton" value="Save" actionListener="#{scheduleView.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                                                </h:panelGrid>
+                                            </p:dialog>    
+
+
+
+
+
+                                        </h:form>
+
+                                    </p:panel></div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!--  Fin Agenda -->
+
+    </h:body>
+    <script>
+
+        //Muestra el menu select de Roles 
+        // Show sideNav
+        $('.button-collapse').sideNav('show');
+        // Hide sideNav
+        $('.button-collapse').sideNav('hide');
+
+
+        //Muestra lista menu select de roles
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+    </script>
+    <script type="text/javascript">
+    PrimeFaces.locales['tr'] = {
+        closeText: 'kapat',
+        prevText: 'geri',
+        nextText: 'ileri',
+        currentText: 'bugün',
+        monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran',
+            'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+        monthNamesShort: ['Oca','Şub','Mar','Nis','May','Haz',
+            'Tem','Ağu','Eyl','Eki','Kas','Ara'],
+        dayNames: ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'],
+        dayNamesShort: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+        dayNamesMin: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+        weekHeader: 'Hf',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        month: 'Ay',
+        week: 'Hafta',
+        day: 'Gün',
+        allDayText : 'Tüm Gün'
+    };
+</script>
+    <style type="text/css">
+        .value {
+            width: 1000px;
+        }
+    </style>
+
+
+</html>
+
+
