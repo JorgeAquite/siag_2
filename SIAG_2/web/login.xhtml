@@ -29,11 +29,11 @@
                                             <p:growl autoUpdate="true"/>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <h:inputText id="username" required="true" requiredMessage="Se necesita el nombre de usuario para continuar" value="#{pruebaMB.usuario}"/>
+                                                    <h:inputText id="username" required="true" requiredMessage="Se necesita el nombre de usuario para continuar" value="#{loginControler.nombre}"/>
                                                     <h:outputLabel for="username" value="Nombre de Usuario"/>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    <h:inputSecret id="password" required="true" requiredMessage="Se necesita la clave para continuar" value="#{pruebaMB.clave}"/>
+                                                    <h:inputSecret id="password" required="true" requiredMessage="Se necesita la clave para continuar" value="#{loginControler.documento}"/>
                                                     <h:outputLabel for="password" value="Clave"/>
                                                 </div>
                                                 <div class="input-field col s12">
@@ -43,7 +43,8 @@
                                                     <br/>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    <h:commandLink value="Entrar" styleClass="btn btn-large" action="backend/prueba"/>
+                                                    <h:commandLink value="Entrar" styleClass="btn btn-large" action="#{loginControler.iniciarSesion()}"/>
+<!--<h:commandLink value="Entrar" styleClass="btn btn-large" actionListener=# />-->
                                                 </div>
                                             </div>
                                         </h:form>

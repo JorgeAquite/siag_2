@@ -5,9 +5,11 @@
  */
 package entidades;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,25 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+    
+    public Usuario iniciarSesion(String nombre, String documento){
+        Usuario usuario=null;
+        String consulta;
+        try {
+            consulta="FROM Usuario u WHERE u.nombre = ?1 and u.documento = ?2";
+            Query query= em.createQuery(consulta);
+            query.setParameter(1,nombre);
+            query.setParameter(2,documento);
+            
+            List<Usuario> lista=query.getResultList();
+            if (!lista.isEmpty()) {
+                usuario=lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return usuario;
     }
     
 }
