@@ -2,7 +2,11 @@
 import entidades.Usuario;
 import entidades.UsuarioFacade;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -57,12 +61,21 @@ public class loginControler implements Serializable {
     public String iniciarSesion(){
         
         String redireccion=null;
+        Usuario us=null;
         try {
-            EJBusuario.iniciarSesion(nombre, documento);
-            redireccion="registrarDeudor";
+            usuario= new Usuario(BigDecimal.ZERO, nombre, "apellido", documento, "tipodocumento", BigInteger.ZERO);
+            us=EJBusuario.iniciarSesion(usuario);
+            
         } catch (Exception e) {
         }
-        return redireccion;
+        if (us==null) {
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage (FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
+        }
+        else redireccion="generarReportes?faces-redirect=true";
+        
+        
+         return redireccion;
     }
      
     

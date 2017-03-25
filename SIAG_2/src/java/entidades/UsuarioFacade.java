@@ -30,23 +30,28 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-    public Usuario iniciarSesion(String nombre, String documento){
-        Usuario usuario=null;
+    public Usuario iniciarSesion(Usuario us){
+        
         String consulta;
+        Usuario existe=null;
         try {
-            consulta="FROM Usuario u WHERE u.nombre = ?1 and u.documento = ?2";
+            //consulta="FROM Usuario u WHERE u.nombre LIKE ?1 and u.documento LIKE ?2";
+            consulta="FROM Usuario u WHERE u.nombre = :nombre and u.documento = :clave";//
             Query query= em.createQuery(consulta);
-            query.setParameter(1,nombre);
-            query.setParameter(2,documento);
+            query.setParameter("nombre", us.getNombre());
+            query.setParameter("clave",  us.getDocumento() );
             
             List<Usuario> lista=query.getResultList();
             if (!lista.isEmpty()) {
-                usuario=lista.get(0);
+               existe=lista.get(0);                
             }
         } catch (Exception e) {
             throw e;
+            
         }
-        return usuario;
+        return existe;
     }
+    
+  
     
 }
