@@ -68,14 +68,27 @@ public class loginControler implements Serializable {
             
         } catch (Exception e) {
         }
-        if (us==null) {
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage (FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
+        if (us!=null) {
+            //Almacenar en la sesion de JSF
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+            redireccion="generarReportes?faces-redirect=true";      
         }
-        else redireccion="generarReportes?faces-redirect=true";
-        
-        
+        else {
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage (FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
+             }
          return redireccion;
+    }
+    
+    public void verificarSesion(){
+        try {
+            FacesContext sesion=FacesContext.getCurrentInstance();
+            Usuario us=(Usuario) sesion.getExternalContext().getSessionMap().get("usuario");
+            
+            if (us==null) {
+                sesion.getExternalContext().redirect("permisos.html");
+            }
+        } catch (Exception e) {
+        }
     }
      
     
