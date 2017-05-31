@@ -5,15 +5,16 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" type="text/css" href="/SIAG_2/faces/jsfcrud.css" />
 
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-            <!-- Compiled and minified CSS -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
 
-                <!-- Compiled and minified JavaScript -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
 
     </h:head>
@@ -37,7 +38,7 @@
         <h:link outcome="solicitarLaboratorios" value="Solicitud de laboratorios"/>
         <br/>
         <h:link outcome="conogramaLaboratorios" value="Conograma de Laboratorios"/>
-            <h:link outcome="/laboratorio/List" value="Ver Todos los Laboratorios"/>
+        <h:link outcome="/laboratorio/List" value="Ver Todos los Laboratorios"/>
         <br />
         <h:link outcome="/material/List" value="Ver Todos los Materiales"/>
         <br />
@@ -54,6 +55,10 @@
         <h:link outcome="/rol/List" value="Ver Todos los Roles"/>
         <br />
         <h:link outcome="/usuario/List" value="Ver Todos los Usuarios"/>
+        <h:form>
+            <h:commandLink action="#{menu.listSetup}" value="Show All Menu Items"/>
+        </h:form>
     </h:body>
+
 </html>
 
