@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../plantillas/plantillaDirreccion.xhtml">
+
+            <ui:define name="content">
+                    <h:form> 
+
+                        <p:growl id="growl" life="4000" />
+                        <p:commandButton value="Generar Archivo plano" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />  
+                        <br />
+                        <br />
+                        <p:growl id="growl2" life="2000" /> 
+                        <p:commandButton value="Generar Informe de Deudores" id="ajax2" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                        <br />
+                        <br />
+                        <p:growl id="growl3" life="2000" /> 
+                        <p:commandButton value="Generar Estadisticas de Insumo" id="ajax3" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                        <br />
+                        <br />
+                        <p:growl id="growl4" life="2000" /> 
+                        <p:commandButton value="Generar Estadisticas de Laboratorio" id="ajax4" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                    </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

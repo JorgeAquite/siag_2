@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <title> Docente</title>
+    </h:head>
+
+    <h:body>
+
+
+        <div id="top" class="top">
+            <ui:insert name="top">SELECCIONAR SU ROL:</ui:insert>
+              <h:form>
+                <p:growl id="messages" />
+
+                <p:splitButton value="ROL" actionListener="#{buttonView.save}" update="messages" >
+                    <p:menuitem value="Docente" actionListener="#{buttonView.update}" update="messages"  />
+                    
+                    
+                    
+                </p:splitButton>
+            </h:form>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">DIRRECCION DE LABORATORIOS</ui:insert>
+                <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 250px"/></li>
+                <h:form>
+                    
+                <p:growl id="messages" showDetail="false"/>
+
+                
+                <p:menu>
+                    <p:submenu label="LABORATORIOS  ">
+                        <p:menuitem value="Solicitar Laboratorio" />
+                      
+                    </p:submenu>
+                    <p:submenu label="RESERVAR INSUMOS">
+                        <p:menuitem value="Solicitar Insumos" />
+                    </p:submenu>
+                    
+                        
+                  </p:menu>
+                </h:form>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

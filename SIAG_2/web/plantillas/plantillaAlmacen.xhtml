@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <title>Almacen General N°1</title>
+    </h:head>
+
+    <h:body>
+
+
+        <div id="top" class="top">
+            <ui:insert name="top">SELECCIONAR SU ROL:</ui:insert>
+              <h:form>
+                <p:growl id="messages" />
+
+                <p:splitButton value="ROL" actionListener="#{buttonView.save}" update="messages" >
+                    <p:menuitem value="Auxiliar" actionListener="#{buttonView.update}" update="messages"  />
+                    <p:menuitem value="Cordinador" actionListener="#{buttonView.delete}"   />
+                    
+                    
+                </p:splitButton>
+            </h:form>
+        </div>
+        <div>
+            <div id="left">
+                <!--<ui:insert name="left">DIRRECCION DE LABORATORIOS</ui:insert> -->
+                <li><img src="http://www.usc.edu.co/USC_logo_footer.png" style="max-width: 250px"/></li>
+                <h:form>
+                    
+                    <p:growl autoUpdate="true"/>
+
+                    <p:panelMenu>
+                        <p:submenu label="LABORATORIOS  ">
+                            <p:menuitem value="Conograma" outcome="/vistas/conogramaAlmacen.xhtml"  />
+
+                        </p:submenu>
+                        <p:submenu label="SOLICITUDES DE INSUMOS ">
+                            <p:menuitem value="Solicitudes" outcome="/vistas/solicitudesAlmacen.xhtml" />
+
+                        </p:submenu>
+                        <p:submenu label="DEUDAS">
+                            <p:menuitem value="Registrar deudor" outcome="/vistas/registrarDeudorAlmacen.xhtml" />
+                            <p:menuitem value="Cancelar deudor" outcome="/vistas/cancelarDeudorAlmacen.xhtml" />
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="GENERAR REPORTES" >
+                            <p:menuitem value="Archivo plano"  />
+                            <p:menuitem value="Informe de deudores"  />
+                            <p:menuitem value="Estaditicas de Insumos"  />
+                            <p:menuitem value="Estadisticas de Laboratorios"  />
+                        </p:submenu>
+
+
+
+                </p:panelMenu>
+                </h:form>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

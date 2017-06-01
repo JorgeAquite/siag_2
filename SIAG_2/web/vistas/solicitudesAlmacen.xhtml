@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantillas/plantillaAlmacen.xhtml">
+
+            <ui:define name="content">
+                 <h:form id="for">
+                   <p:growl id="msg"/>
+                   <f:facet name="header">
+                       <h:outputText value="BUSCAR" /> 
+                    <p:autoComplete value="#{regis.registroD}" completeMethod="#{regis.complete}"/>
+                   </f:facet>
+                   
+                    <br/>
+                     <br/>
+                     
+                    
+                        
+                        
+                     <p:dataTable id="dtDeudas" var="s" value="#{soli.lista}"    widgetVar="deu" 
+                                 rows="4" paginator="true"
+                                 selectionMode="single" selection="#{soli.lista}" rowKey="#{soli.lista}"
+                                 emptyMessage="No cars found with given criteria"    >
+                     
+                        <f:facet name="header">
+                            TOTAL DE SOLICITUDES
+                        </f:facet>
+
+
+
+                        
+                         <p:column headerText="N° SOLICITUD">
+                             <h:outputText value="#{s.numSolicitud}"/>
+                        </p:column>
+                        
+                        <p:column headerText="ID">
+                            <h:outputText value="#{s.documento}"/>
+                        </p:column>
+                         
+                        <p:column headerText="ESTUDIANTE">
+                            <h:outputText value="#{s.estudiante}"/>
+                        </p:column> 
+                         
+                         <p:column headerText="FECHA">
+                             <h:outputText value="#{s.fecha}"/>
+                        </p:column>
+                        
+                        <p:column headerText="HORA INICIAL">
+                            <h:outputText value="#{s.horaInicial}"/>
+                        </p:column>
+                        
+                        <p:column headerText="HORA FINAL">
+                            <h:outputText value="#{s.horaFinal}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE DOCENTE">
+                            <h:outputText value="#{s.nombreDocente}"/>
+                        </p:column>
+                         <p:column headerText="LABORATORIO ">
+                             <h:outputText value="#{s.laboratrio}"/>
+                        </p:column>
+                        
+                        <p:column headerText="No. ESTUDIANTES">
+                            <h:outputText value="#{s.estudiante}"/>
+                          </p:column>
+                          <p:column headerText="NOMBRE DE PRACTICA">
+                              <h:outputText value="#{s.nombrePractica}"/>
+                          </p:column>
+                         
+                        <p:column headerText="PROGRAMA">
+                            <h:outputText value="#{s.programa}"/>
+                        </p:column>
+                        
+                        <p:column headerText="INSUMOS">
+                            <h:outputText value="#{s.insumos}"/>
+                        </p:column>
+                         <p:column headerText="ESTADO">
+                             <h:outputText value="#{s.estado}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Aceptar"/>
+                        </f:facet>
+                    </p:dataTable>
+
+                       
+                         
+                         
+                        
+
+                    
+                    
+                    
+                    
+                    
+                    
+                 </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
