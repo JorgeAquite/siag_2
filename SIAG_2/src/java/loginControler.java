@@ -29,7 +29,7 @@ public class loginControler implements Serializable {
     private Usuario usuario;
     private String nombre;
     private String documento;
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -71,7 +71,7 @@ public class loginControler implements Serializable {
         if (us!=null) {
             //Almacenar en la sesion de JSF
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-            redireccion="generarReportes?faces-redirect=true";      
+            redireccion="index.xhtml?faces-redirect=true";
         }
         else {
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage (FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
@@ -85,7 +85,7 @@ public class loginControler implements Serializable {
             Usuario us=(Usuario) sesion.getExternalContext().getSessionMap().get("usuario");
             
             if (us==null) {
-                sesion.getExternalContext().redirect("permisos.html");
+                sesion.getExternalContext().redirect("../permisos.xhtml");
             }
         } catch (Exception e) {
         }
