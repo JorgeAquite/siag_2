@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Aluca
  */
 @Stateless
-public class MenuFacade extends AbstractFacade<Menu> {
+public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal {
 
     @PersistenceContext(unitName = "SIAG_2PU")
     private EntityManager em;

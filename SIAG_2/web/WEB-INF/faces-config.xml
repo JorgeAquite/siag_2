@@ -24,15 +24,6 @@
         <managed-bean-class>entidades.MenuController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-    <managed-bean>
-        <managed-bean-name>menuJpa</managed-bean-name>
-        <managed-bean-class>entidades.MenuFacade</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <converter>
-        <converter-for-class>entidades.Menu</converter-for-class>
-        <converter-class>entidades.MenuConverter</converter-class>
-    </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>

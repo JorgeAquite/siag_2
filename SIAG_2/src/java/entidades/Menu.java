@@ -38,6 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Menu.findByTipo", query = "SELECT m FROM Menu m WHERE m.tipo = :tipo")})
 public class Menu implements Serializable {
 
+    @JoinColumn(name = "ROLID", referencedColumnName = "IDROL")
+    @ManyToOne
+    private Rol rolid;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -151,6 +155,14 @@ public class Menu implements Serializable {
     @Override
     public String toString() {
         return "entidades.Menu[ codigo=" + codigo + " ]";
+    }
+
+    public Rol getRolid() {
+        return rolid;
+    }
+
+    public void setRolid(Rol rolid) {
+        this.rolid = rolid;
     }
     
 }

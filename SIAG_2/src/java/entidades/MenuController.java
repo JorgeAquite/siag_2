@@ -6,6 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -29,6 +31,7 @@ public class MenuController implements Serializable{
     private MenuFacadeLocal EJBMenu;
     private List<Menu> lista;
      private MenuModel model;
+     private Collection<Rol> listarol;
     
     @PostConstruct
      public void init(){
@@ -54,18 +57,26 @@ public class MenuController implements Serializable{
         this.model = model;
     }
      
-    
+    ///lo que quiero hacer es comparar el tipo de usuario del usuario actual con el tipo de usuario del menu
     public void establecerPermisos(){
+        //adquiero el usuario que esta logeado y capturo los roles que tiene asignado
         Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        listarol=us.getRolCollection();
+        
+        
+               
+        
         
         for (Menu m : lista){
-//            if(m.getTipo().equals("S") && m.g ){
+              //   System.out.println("el rol del menu es "+m.getRolid().getRol());        
+            if(m.getTipo().equals("S") && m.getRolid().getRol().equals(rolactual()) ){
                 DefaultSubMenu firstSubmenu = new DefaultSubMenu(m.getNombre());
                 for(Menu i: lista){
                     Menu subMenu= i.getCodsubmenu();
                     if (subMenu != null){
                         if(subMenu.getCodigo()==m.getCodigo()){
                             DefaultMenuItem item = new DefaultMenuItem(i.getNombre());
+                            item.setUrl("../vistas/conogramaAlmacen.xhtml");
                             firstSubmenu.addElement(item);
                         }
                     }
@@ -73,11 +84,21 @@ public class MenuController implements Serializable{
                 model.addElement(firstSubmenu);
             }
             else{
-                if (m.getCodsubmenu()==null) {
+                if (m.getCodsubmenu()==null && m.getRolid().getRol().equals(rolactual())) {
                     DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
                     model.addElement(item);
                 }  
             }
         }
+    }
+
+    private String rolactual() {
+        String rol=null;
+        for (Rol r : listarol) {
+            rol=r.getRol();
+            //System.out.println("el rol del usuario es "+rol);
+            
+        }
+        return rol;
     }
 }

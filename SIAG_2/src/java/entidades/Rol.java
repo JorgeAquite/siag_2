@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Rol.findByIdrol", query = "SELECT r FROM Rol r WHERE r.idrol = :idrol"),
     @NamedQuery(name = "Rol.findByRol", query = "SELECT r FROM Rol r WHERE r.rol = :rol")})
 public class Rol implements Serializable {
+
+    @OneToMany(mappedBy = "rolid")
+    private Collection<Menu> menuCollection;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -114,6 +118,15 @@ public class Rol implements Serializable {
     @Override
     public String toString() {
         return "entidades.Rol[ idrol=" + idrol + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Menu> getMenuCollection() {
+        return menuCollection;
+    }
+
+    public void setMenuCollection(Collection<Menu> menuCollection) {
+        this.menuCollection = menuCollection;
     }
     
 }
