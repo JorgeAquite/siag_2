@@ -32,6 +32,7 @@ public class MenuController implements Serializable{
     private List<Menu> lista;
      private MenuModel model;
      private Collection<Rol> listarol;
+     private Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
     
     @PostConstruct
      public void init(){
@@ -60,12 +61,8 @@ public class MenuController implements Serializable{
     ///lo que quiero hacer es comparar el tipo de usuario del usuario actual con el tipo de usuario del menu
     public void establecerPermisos(){
         //adquiero el usuario que esta logeado y capturo los roles que tiene asignado
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        listarol=us.getRolCollection();
-        
-        
-               
-        
+//        listarol=us.getRolCollection();
+                
         
         for (Menu m : lista){
               //   System.out.println("el rol del menu es "+m.getRolid().getRol());        
@@ -76,7 +73,9 @@ public class MenuController implements Serializable{
                     if (subMenu != null){
                         if(subMenu.getCodigo()==m.getCodigo()){
                             DefaultMenuItem item = new DefaultMenuItem(i.getNombre());
-                            item.setUrl("../vistas/conogramaAlmacen.xhtml");
+//                            System.out.println(i.getRuta());
+//                            item.setUrl("../vistas/conogramaAlmacen.xhtml");
+                            item.setUrl(i.getRuta());                            
                             firstSubmenu.addElement(item);
                         }
                     }
@@ -93,6 +92,7 @@ public class MenuController implements Serializable{
     }
 
     private String rolactual() {
+        listarol=us.getRolCollection();
         String rol=null;
         for (Rol r : listarol) {
             rol=r.getRol();

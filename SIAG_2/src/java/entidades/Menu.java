@@ -38,6 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Menu.findByTipo", query = "SELECT m FROM Menu m WHERE m.tipo = :tipo")})
 public class Menu implements Serializable {
 
+    @Size(max = 100)
+    @Column(name = "RUTA")
+    private String ruta;
+
     @JoinColumn(name = "ROLID", referencedColumnName = "IDROL")
     @ManyToOne
     private Rol rolid;
@@ -163,6 +167,14 @@ public class Menu implements Serializable {
 
     public void setRolid(Rol rolid) {
         this.rolid = rolid;
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
     }
     
 }
