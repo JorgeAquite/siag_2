@@ -18,16 +18,19 @@
 
 
         <div id="top" class="top">
-            <ui:insert name="top">SELECCIONAR SU ROL:</ui:insert>
+            <!--<ui:insert name="top">SELECCIONAR SU ROL:</ui:insert>-->
               <h:form>
                 <p:growl id="messages" />
-
-                <p:splitButton value="ROL" actionListener="#{buttonView.save}" update="messages" >
+<!--                <p:splitButton value="ROL" actionListener="#{buttonView.save}" update="messages" >
                     <p:menuitem value="Auxiliar" actionListener="#{buttonView.update}" update="messages"  />
                     <p:menuitem value="Cordinador" actionListener="#{buttonView.delete}"   />
-                    
-                    
-                </p:splitButton>
+                </p:splitButton>-->
+                 <p:outputLabel for="rol" value="" />
+                 <p:selectOneMenu id="rol" value="" style="width:150px">
+                <f:selectItem itemLabel="Selecciona tu rol" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{menuController.roles}"/>
+                <f:ajax event="click" execute="#{menuController.rolactual()}"/>
+            </p:selectOneMenu>
             </h:form>
         </div>
         <div>
