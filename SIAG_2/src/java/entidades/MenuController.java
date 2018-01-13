@@ -33,13 +33,13 @@ public class MenuController implements Serializable{
     
     @EJB    
     private MenuFacadeLocal EJBMenu;
-    private RolFacade EJBRol;
     private List<Menu> lista;
     private String rol;
     private HashMap<String,String> roles;
     private MenuModel model;
     private Collection<Rol> listarol;
     private Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+//    private String rolSeleccionado;
     
     @PostConstruct
      public void init(){
@@ -97,10 +97,11 @@ public class MenuController implements Serializable{
         //adquiero el usuario que esta logeado y capturo los roles que tiene asignado
 //        listarol=us.getRolCollection();
                 
-        
+      model= new DefaultMenuModel();  
         for (Menu m : lista){
-                 System.out.println("el rol del menu es "+m.getRolid().getRol());        
-            if(m.getTipo().equals("S") && m.getRolid().getRol().equals(rolactual()) ){
+                         
+            if(m.getTipo().equals("S") && m.getRolid().getRol().equals(rolactual(rol)) ){
+                System.out.println("el rol del menu es "+m.getRolid().getRol());
                 DefaultSubMenu firstSubmenu = new DefaultSubMenu(m.getNombre());
                 for(Menu i: lista){
                     Menu subMenu= i.getCodsubmenu();
@@ -117,7 +118,7 @@ public class MenuController implements Serializable{
                 model.addElement(firstSubmenu);
             }
             else{
-                if (m.getCodsubmenu()==null && m.getRolid().getRol().equals(rolactual())) {
+                if (m.getCodsubmenu()==null && m.getRolid().getRol().equals(rolactual(rol))) {
                     DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
                     model.addElement(item);
                 }  
@@ -125,15 +126,20 @@ public class MenuController implements Serializable{
         }
     }
      //rol inicial con el que se cargan los menus
-    public String rolactual() {
-        listarol=us.getRolCollection();
-        String rol=null;
+    public String rolactual(String rolP) {
+        if (rolP!=null) {
+            System.out.println("entro aca");
+            rol=rolP;
+            
+        } else {
+                listarol=us.getRolCollection();
         for (Rol r : listarol) {
             rol=r.getRol();
-            System.out.println("el rol del usuario es "+rol);
-            
+            System.out.println("el rol del usuario es PERO NO DEBERIA SER"+ rol);
+                    }
         }
         return rol;
+        
     }
     //muestra los roles desplegados en el combo de seleccion de roles
     public void listarRoles() {
